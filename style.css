@@ -25,7 +25,7 @@ body {
   position: relative;
   height: 100vh;
 
-  background-image: url("https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2070&auto=format&fit=crop");
+  background-image: url("./images/silenced-voices.jpg");
 
   background-size: cover;
   background-position: center;
@@ -73,6 +73,17 @@ body {
   margin-bottom: 40px;
 
   color: #bbbbbb;
+}
+
+.section-label {
+  margin-bottom: 18px;
+
+  color: rgba(255,255,255,0.56);
+
+  font-size: 0.78rem;
+  letter-spacing: 3px;
+  line-height: 1.5;
+  text-transform: uppercase;
 }
 
 .enter-button {
@@ -139,7 +150,7 @@ body {
 /* FINAL */
 
 .final-section {
-  height: 100vh;
+  min-height: 110vh;
 
   display: flex;
   align-items: center;
@@ -147,17 +158,46 @@ body {
 
   text-align: center;
 
-  background: black;
+  padding: 140px 10%;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(0,0,0,0.92),
+      rgba(0,0,0,0.78) 45%,
+      rgba(0,0,0,0.94)
+    ),
+    url("./images/civil-rights-march.jpg");
+
+  background-size: cover;
+  background-position: center;
+}
+
+.final-content {
+  max-width: 980px;
 }
 
 .final-content h2 {
-  font-size: 4rem;
-  margin-bottom: 20px;
+  font-size: clamp(3rem, 7vw, 6rem);
+  margin-bottom: 32px;
+
+  line-height: 1.08;
 }
 
 .final-content p {
-  font-size: 1.5rem;
+  max-width: 820px;
+  margin: 0 auto 24px auto;
+
+  font-size: 1.45rem;
+  line-height: 1.9;
+
   color: #cccccc;
+}
+
+.final-content .closing-line {
+  color: #f5f5f5;
+  font-size: 1.15rem;
+  letter-spacing: 1px;
 }
 
 /* MOBILE */
@@ -179,18 +219,24 @@ body {
 /* FADE ANIMATIONS */
 
 .content,
-.final-content {
+.final-content,
+[data-reveal] {
+  --reveal-y: 60px;
+  --parallax-y: 0px;
+
   opacity: 0;
-  transform: translateY(60px);
+  transform: translate3d(0, calc(var(--reveal-y) + var(--parallax-y)), 0);
 
   transition:
     opacity 1.4s ease,
     transform 1.4s ease;
 }
 
-.show {
+.show,
+[data-reveal].show {
+  --reveal-y: 0px;
+
   opacity: 1;
-  transform: translateY(0);
 }
 
 /* CINEMATIC TEXT EFFECT */
@@ -356,9 +402,37 @@ body {
 /* TIMELINE */
 
 .timeline-section {
-  background: #0a0a0a;
+  position: relative;
 
-  padding: 140px 10%;
+  padding: 160px 10%;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255,255,255,0.07), transparent 38%),
+    linear-gradient(
+      to bottom,
+      rgba(6,6,6,0.98),
+      rgba(12,12,12,0.96)
+    );
+}
+
+.timeline-haze {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(90deg, transparent, rgba(255,255,255,0.035), transparent),
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.025) 0,
+      rgba(255,255,255,0.025) 1px,
+      transparent 1px,
+      transparent 120px
+    );
+
+  opacity: 0.45;
+  pointer-events: none;
 }
 
 .timeline-intro {
@@ -367,7 +441,7 @@ body {
 }
 
 .timeline-intro h2 {
-  font-size: 3.5rem;
+  font-size: clamp(3rem, 6vw, 5rem);
   margin-bottom: 25px;
 }
 
@@ -384,7 +458,7 @@ body {
 .timeline {
   position: relative;
 
-  max-width: 1000px;
+  max-width: 1050px;
   margin: 0 auto;
 }
 
@@ -399,7 +473,14 @@ body {
   width: 2px;
   height: 100%;
 
-  background: rgba(255,255,255,0.2);
+  background:
+    linear-gradient(
+      to bottom,
+      transparent,
+      rgba(255,255,255,0.42) 12%,
+      rgba(255,255,255,0.12) 88%,
+      transparent
+    );
 
   transform: translateX(-50%);
 }
@@ -409,9 +490,9 @@ body {
 
   width: 50%;
 
-  padding: 40px;
+  padding: 36px 46px;
 
-  margin-bottom: 80px;
+  margin-bottom: 110px;
 }
 
 .timeline-item:nth-child(odd) {
@@ -424,7 +505,7 @@ body {
 }
 
 .timeline-year {
-  font-size: 2rem;
+  font-size: 2.1rem;
   font-weight: bold;
 
   margin-bottom: 20px;
@@ -433,10 +514,38 @@ body {
 }
 
 .timeline-content {
+  position: relative;
+
+  padding: 28px 30px;
+
   font-size: 1.1rem;
   line-height: 2;
 
   color: #d0d0d0;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,0.055),
+      rgba(255,255,255,0.018)
+    );
+
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 3px;
+  box-shadow: 0 25px 80px rgba(0,0,0,0.24);
+}
+
+.timeline-kicker {
+  display: block;
+
+  margin-bottom: 12px;
+
+  color: rgba(255,255,255,0.68);
+
+  font-size: 0.72rem;
+  letter-spacing: 2.4px;
+  line-height: 1.5;
+  text-transform: uppercase;
 }
 
 .timeline-item::after {
@@ -449,8 +558,12 @@ body {
   width: 18px;
   height: 18px;
 
-  background: white;
+  background: #f4f0e7;
   border-radius: 50%;
+
+  box-shadow:
+    0 0 0 8px rgba(255,255,255,0.06),
+    0 0 40px rgba(255,255,255,0.2);
 }
 
 .timeline-item:nth-child(odd)::after {
@@ -473,8 +586,10 @@ body {
     width: 100%;
     left: 0 !important;
 
-    padding-left: 60px;
+    padding: 24px 0 50px 60px;
     text-align: left !important;
+
+    margin-bottom: 40px;
   }
 
   .timeline-item::after {
@@ -485,6 +600,8 @@ body {
 /* QUOTE SECTION */
 
 .quote-section {
+  position: relative;
+
   min-height: 70vh;
 
   display: flex;
@@ -503,8 +620,118 @@ body {
   text-align: center;
 }
 
+.quote-sequence {
+  display: block;
+
+  min-height: 100vh;
+  padding: 150px 10%;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(0,0,0,0.92),
+      rgba(0,0,0,0.82) 45%,
+      rgba(0,0,0,0.94)
+    ),
+    url("./images/black-lives-matter-signs.jpg");
+
+  background-size: cover;
+  background-position: center;
+}
+
 .quote-box {
   max-width: 1000px;
+
+  margin: 0 auto 80px auto;
+}
+
+.quote-box h2 {
+  margin-bottom: 24px;
+
+  font-size: clamp(3rem, 6vw, 5rem);
+  line-height: 1.12;
+}
+
+.quote-box p {
+  max-width: 820px;
+  margin: 0 auto;
+
+  color: #d3d3d3;
+
+  font-size: 1.2rem;
+  line-height: 2;
+}
+
+.quote-box .section-label {
+  margin-bottom: 18px;
+}
+
+.quote-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+
+  max-width: 1080px;
+  margin: 0 auto;
+
+  text-align: left;
+}
+
+.quote-card {
+  min-height: 260px;
+  padding: 42px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,0.07),
+      rgba(255,255,255,0.025)
+    );
+
+  border: 1px solid rgba(255,255,255,0.1);
+  border-left: 3px solid rgba(255,255,255,0.38);
+  border-radius: 3px;
+
+  backdrop-filter: blur(4px);
+
+  transition:
+    transform 0.5s ease,
+    background 0.5s ease,
+    border-color 0.5s ease;
+}
+
+.quote-card:hover {
+  transform: translateY(-8px);
+  background: rgba(255,255,255,0.08);
+  border-left-color: rgba(255,255,255,0.72);
+}
+
+.quote-card p {
+  margin-bottom: 36px;
+
+  color: #f3f3f3;
+
+  font-size: clamp(1.45rem, 3vw, 2.25rem);
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.quote-card cite {
+  color: rgba(255,255,255,0.62);
+
+  font-size: 0.85rem;
+  font-style: normal;
+  letter-spacing: 1.8px;
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+
+.warning-quote {
+  border-left-color: rgba(210, 84, 70, 0.7);
 }
 
 .big-quote {
@@ -529,6 +756,15 @@ body {
 
   .big-quote {
     font-size: 2rem;
+  }
+
+  .quote-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .quote-card {
+    min-height: 220px;
+    padding: 32px;
   }
 
 }
@@ -598,15 +834,15 @@ body {
   height: 700px;
 
   background-image:
-    linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5)),
-    url("https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=2070&auto=format&fit=crop");
+    linear-gradient(rgba(0,0,0,0.22), rgba(0,0,0,0.55)),
+    url("./images/student-protest.jpg");
 
   background-size: cover;
   background-position: center;
 
   border-radius: 4px;
 
-  filter: grayscale(100%) contrast(110%);
+  filter: grayscale(100%) contrast(112%) brightness(0.86);
 
   transform: rotate(-2deg);
 }
@@ -813,6 +1049,113 @@ body {
   color: #cccccc;
 }
 
+/* HEALING SECTION */
+
+.healing-section {
+  position: relative;
+
+  min-height: 100vh;
+
+  padding: 150px 10%;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(circle at 15% 10%, rgba(255,255,255,0.055), transparent 28%),
+    linear-gradient(
+      to bottom,
+      rgba(6,6,6,0.98),
+      rgba(18,18,18,0.94)
+    );
+}
+
+.healing-intro {
+  max-width: 920px;
+  margin: 0 auto 90px auto;
+
+  text-align: center;
+}
+
+.healing-intro h2 {
+  margin-bottom: 30px;
+
+  font-size: clamp(3rem, 6vw, 5rem);
+  line-height: 1.12;
+}
+
+.healing-intro p {
+  color: #d0d0d0;
+
+  font-size: 1.25rem;
+  line-height: 2;
+}
+
+.healing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 22px;
+
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+.healing-card {
+  position: relative;
+
+  min-height: 320px;
+  padding: 34px 28px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.045),
+      rgba(255,255,255,0.018)
+    );
+
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 3px;
+
+  overflow: visible;
+}
+
+.healing-card::before {
+  content: "";
+
+  position: absolute;
+  top: 28px;
+  left: 28px;
+
+  width: 34px;
+  height: 2px;
+
+  background: rgba(255,255,255,0.34);
+}
+
+.healing-card h3 {
+  margin-bottom: 20px;
+
+  font-size: clamp(1.25rem, 2vw, 1.55rem);
+  line-height: 1.25;
+
+  overflow-wrap: normal;
+}
+
+.healing-card p {
+  color: #cfcfcf;
+
+  font-size: 0.98rem;
+  line-height: 1.85;
+}
+
+.healing-card:hover {
+  background: rgba(255,255,255,0.055);
+  border-color: rgba(255,255,255,0.18);
+}
+
 /* STATS SECTION */
 
 .stats-section {
@@ -907,7 +1250,11 @@ body {
 /* GALLERY SECTION */
 
 .gallery-section {
+  position: relative;
+
   padding: 140px 10%;
+
+  overflow: hidden;
 
   background:
     linear-gradient(
@@ -926,7 +1273,7 @@ body {
 }
 
 .gallery-intro h2 {
-  font-size: 4rem;
+  font-size: clamp(3rem, 6vw, 5rem);
 
   margin-bottom: 25px;
 }
@@ -942,20 +1289,35 @@ body {
 .gallery-grid {
   display: grid;
 
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-auto-rows: 155px;
 
-  gap: 30px;
+  gap: 24px;
 }
 
 .gallery-image {
-  height: 500px;
+  position: relative;
+
+  min-height: 280px;
+  height: auto;
+
+  grid-column: span 4;
+  grid-row: span 3;
+
+  overflow: hidden;
 
   background-size: cover;
   background-position: center;
 
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 2px;
+
   filter:
     grayscale(100%)
-    contrast(110%);
+    contrast(112%)
+    brightness(0.82);
+
+  box-shadow: 0 30px 90px rgba(0,0,0,0.35);
 
   transition:
     transform 0.5s ease,
@@ -963,29 +1325,105 @@ body {
 }
 
 .gallery-image:hover {
-  transform: scale(1.03);
+  transform: translateY(-8px) scale(1.01);
 
   filter:
-    grayscale(20%)
-    contrast(115%);
+    grayscale(35%)
+    contrast(118%)
+    brightness(0.92);
+}
+
+.gallery-wide {
+  grid-column: span 8;
+}
+
+.gallery-tall {
+  grid-row: span 4;
+}
+
+.gallery-small {
+  grid-row: span 2;
+}
+
+.gallery-image::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(0,0,0,0.78),
+      rgba(0,0,0,0.08) 48%,
+      rgba(255,255,255,0.04)
+    );
+
+  pointer-events: none;
+}
+
+.gallery-image figcaption {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 18px;
+
+  z-index: 2;
+
+  color: rgba(255,255,255,0.76);
+
+  font-size: 0.78rem;
+  letter-spacing: 1.8px;
+  line-height: 1.6;
+  text-transform: uppercase;
 }
 
 .image-1 {
   background-image:
     linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.4)),
-    url("https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2070&auto=format&fit=crop");
+    url("./images/civil-rights-march.jpg");
 }
 
 .image-2 {
   background-image:
     linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.4)),
-    url("https://images.unsplash.com/photo-1513258496099-48168024aec0?q=80&w=2070&auto=format&fit=crop");
+    url("./images/boarding-school.jpg");
 }
 
 .image-3 {
   background-image:
     linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.4)),
-    url("https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=2070&auto=format&fit=crop");
+    url("./images/chinese-exclusion.jpg");
+}
+
+.image-4 {
+  background-image:
+    linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.4)),
+    url("./images/student-protest.jpg");
+}
+
+.image-5 {
+  background-image:
+    linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.45)),
+    url("./images/alcatraz-occupation.jpg");
+}
+
+.image-6 {
+  background-image:
+    linear-gradient(rgba(0,0,0,0.22), rgba(0,0,0,0.5)),
+    url("./images/chicano-moratorium.jpg");
+}
+
+.image-7 {
+  background-image:
+    linear-gradient(rgba(0,0,0,0.26), rgba(0,0,0,0.42)),
+    url("./images/black-lives-matter-signs.jpg");
+}
+
+.image-8 {
+  background-image:
+    linear-gradient(rgba(0,0,0,0.22), rgba(0,0,0,0.5)),
+    url("./images/slavery.jpg");
 }
 
 /* FILM GRAIN */
@@ -1120,6 +1558,16 @@ body {
   padding-left: 20px;
 }
 
+.sources-content a {
+  color: #f0f0f0;
+  text-decoration-color: rgba(255,255,255,0.35);
+  text-underline-offset: 4px;
+}
+
+.sources-content a:hover {
+  text-decoration-color: rgba(255,255,255,0.8);
+}
+
 /* SITE CREDIT */
 
 .site-credit {
@@ -1166,7 +1614,7 @@ body {
 }
 
 .erasure-intro h2 {
-  font-size: 4.5rem;
+  font-size: clamp(3rem, 7vw, 5.6rem);
 
   margin-bottom: 30px;
 
@@ -1179,6 +1627,174 @@ body {
   line-height: 2;
 
   color: #cccccc;
+}
+
+/* PROTEST REEL */
+
+.protest-reel {
+  position: relative;
+
+  padding: 150px 6% 170px;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(10,10,10,0.98),
+      rgba(4,4,4,0.98) 45%,
+      rgba(12,12,12,0.95)
+    );
+}
+
+.protest-reel::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255,255,255,0.055), transparent 24%),
+    radial-gradient(circle at 84% 60%, rgba(180,180,180,0.035), transparent 28%);
+
+  pointer-events: none;
+}
+
+.reel-intro {
+  position: relative;
+  z-index: 2;
+
+  max-width: 900px;
+  margin: 0 auto 90px;
+
+  text-align: center;
+}
+
+.reel-intro h2 {
+  margin-bottom: 26px;
+
+  font-size: clamp(3rem, 6vw, 5rem);
+  line-height: 1.12;
+}
+
+.reel-intro p {
+  color: #cfcfcf;
+
+  font-size: 1.22rem;
+  line-height: 2;
+}
+
+.reel-track {
+  position: relative;
+  z-index: 2;
+
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 24px;
+
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.reel-frame {
+  position: relative;
+
+  min-height: 440px;
+
+  grid-column: span 3;
+
+  overflow: hidden;
+
+  background-size: cover;
+  background-position: center;
+
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 2px;
+
+  filter: grayscale(100%) contrast(112%) brightness(0.78);
+
+  box-shadow: 0 30px 90px rgba(0,0,0,0.34);
+}
+
+.reel-frame:nth-child(1),
+.reel-frame:nth-child(4) {
+  min-height: 520px;
+  margin-top: 45px;
+}
+
+.reel-frame:nth-child(2) {
+  min-height: 380px;
+}
+
+.reel-frame:nth-child(3) {
+  min-height: 480px;
+  margin-top: 86px;
+}
+
+.reel-frame::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(0,0,0,0.84),
+      transparent 56%
+    );
+}
+
+.reel-frame figcaption {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+
+  z-index: 2;
+
+  color: rgba(255,255,255,0.78);
+
+  font-size: 0.78rem;
+  letter-spacing: 1.8px;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.reel-frame figcaption span {
+  display: block;
+
+  margin-bottom: 6px;
+
+  color: #ffffff;
+
+  font-size: 1.5rem;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.reel-civil {
+  background-image:
+    linear-gradient(rgba(0,0,0,0.16), rgba(0,0,0,0.48)),
+    url("./images/civil-rights-march.jpg");
+}
+
+.reel-student {
+  background-image:
+    linear-gradient(rgba(0,0,0,0.18), rgba(0,0,0,0.5)),
+    url("./images/student-protest.jpg");
+}
+
+.reel-indigenous {
+  background-image:
+    linear-gradient(rgba(0,0,0,0.18), rgba(0,0,0,0.52)),
+    url("./images/alcatraz-occupation.jpg");
+}
+
+.reel-blm {
+  background-image:
+    linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.52)),
+    url("./images/black-lives-matter-signs.jpg");
 }
 
 /* HISTORY PANELS */
@@ -1207,6 +1823,7 @@ body {
 
 .history-image {
   flex: 1;
+  min-width: 0;
 
   height: 750px;
 
@@ -1218,6 +1835,8 @@ body {
     contrast(110%);
 
   border-radius: 4px;
+
+  box-shadow: 0 30px 100px rgba(0,0,0,0.35);
 }
 
 .slavery-image {
@@ -1233,7 +1852,7 @@ body {
 }
 
 .history-text h2 {
-  font-size: 4rem;
+  font-size: clamp(3rem, 5vw, 4.6rem);
 
   margin-bottom: 40px;
 
@@ -1287,5 +1906,126 @@ body {
 .mexican-image {
   background-image:
     linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.55)),
-    url("https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?q=80&w=2070&auto=format&fit=crop");
+    url("./images/mexican-american-discrimination.jpg");
+}
+
+@media (max-width: 980px) {
+
+  .reel-track {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .reel-frame,
+  .reel-frame:nth-child(1),
+  .reel-frame:nth-child(2),
+  .reel-frame:nth-child(3),
+  .reel-frame:nth-child(4) {
+    min-height: 360px;
+    margin-top: 0;
+    grid-column: span 1;
+  }
+
+  .history-panel,
+  .reverse-panel {
+    flex-direction: column;
+    min-height: auto;
+    padding: 90px 8%;
+  }
+
+  .history-image {
+    width: 100%;
+    height: 520px;
+  }
+
+}
+
+@media (max-width: 680px) {
+
+  .reel-track {
+    grid-template-columns: 1fr;
+  }
+
+  .reel-frame,
+  .reel-frame:nth-child(1),
+  .reel-frame:nth-child(2),
+  .reel-frame:nth-child(3),
+  .reel-frame:nth-child(4) {
+    grid-column: span 1;
+    min-height: 300px;
+  }
+
+  .history-image {
+    height: 380px;
+  }
+
+}
+
+@media (max-width: 1100px) {
+
+  .healing-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .gallery-image {
+    grid-column: span 3;
+  }
+
+  .gallery-wide {
+    grid-column: span 6;
+  }
+
+}
+
+@media (max-width: 720px) {
+
+  .section,
+  .language-section,
+  .timeline-section,
+  .quote-sequence,
+  .stats-section,
+  .gallery-section,
+  .healing-section,
+  .sources-section,
+  .final-section {
+    padding-left: 7%;
+    padding-right: 7%;
+  }
+
+  .timeline-intro,
+  .quote-box,
+  .gallery-intro,
+  .healing-intro {
+    margin-bottom: 60px;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+  }
+
+  .gallery-image,
+  .gallery-wide,
+  .gallery-tall,
+  .gallery-small {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    min-height: 320px;
+  }
+
+  .healing-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .healing-card {
+    min-height: 260px;
+  }
+
+  .final-content p {
+    font-size: 1.12rem;
+  }
+
 }
